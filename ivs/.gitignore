@@ -1,0 +1,31 @@
+# Rust/Cargo
+target/
+Cargo.lock
+
+# Node
+node_modules/
+dist/
+*.log
+
+# Environment
+.env
+
+# Temporary data
+/tmp/
+
+# Genesis artifacts
+para-*-genesis-state
+para-*-wasm
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+.env.local

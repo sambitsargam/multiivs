@@ -1,0 +1,24 @@
+{
+  "name": "ivs-worker",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "start": "tsx src/main.ts",
+    "build": "tsc",
+    "dev": "tsx watch src/main.ts"
+  },
+  "dependencies": {
+    "@polkadot/api": "^10",
+    "@polkadot/keyring": "^12",
+    "@polkadot/util": "^12",
+    "@polkadot/util-crypto": "^12",
+    "dotenv": "^16",
+    "node-seal": "^6",
+    "form-data": "^4"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "tsx": "^4",
+    "typescript": "^5"
+  }
+}

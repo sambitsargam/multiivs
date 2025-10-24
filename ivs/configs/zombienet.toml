@@ -1,0 +1,45 @@
+[settings]
+timeout = 1000
+provider = "native"
+
+[relaychain]
+default_command = "/Users/sambit/Desktop/multiivs/ivs/chain/polkadot-sdk/target/release/polkadot"
+chain = "rococo-local"
+
+  [[relaychain.nodes]]
+  name = "alice"
+  rpc_port = 9944
+
+  [[relaychain.nodes]]
+  name = "bob"
+  rpc_port = 9946
+
+# Disease-A Parachain (ParaId: 2000)
+[[parachains]]
+id = 2000
+chain = "local"
+
+  [parachains.collator]
+  name = "disease-a-collator"
+  command = "/Users/sambit/Desktop/multiivs/ivs/chain/polkadot-sdk/target/release/parachain-template-node"
+  rpc_port = 8844
+
+# Disease-B Parachain (ParaId: 2001)
+[[parachains]]
+id = 2001
+chain = "local"
+
+  [parachains.collator]
+  name = "disease-b-collator"
+  command = "/Users/sambit/Desktop/multiivs/ivs/chain/polkadot-sdk/target/release/parachain-template-node"
+  rpc_port = 8846
+
+# Aggregator Parachain (ParaId: 3000)
+[[parachains]]
+id = 3000
+chain = "local"
+
+  [parachains.collator]
+  name = "aggregator-collator"
+  command = "/Users/sambit/Desktop/multiivs/ivs/chain/polkadot-sdk/target/release/parachain-template-node"
+  rpc_port = 8848
