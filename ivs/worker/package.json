@@ -4,6 +4,11 @@
   "type": "module",
   "scripts": {
     "start": "tsx src/main.ts",
+    "demo:mhe": "tsx src/demo-mhe.ts",
+    "demo:production": "tsx -e 'import(\"./src/ivs-production.ts\").then(m => m.demoProductionMHE())'",
+    "demo:correct": "tsx -e 'import(\"./src/ivs-correct.ts\").then(m => m.demoCorrectAlgorithm())'",
+    "demo:ckks": "tsx -e 'import(\"./src/ckks-mhe.ts\").then(m => m.demoEncryptedIVS())'",
+    "demo:ivs": "tsx -e 'import(\"./src/ivs-encrypted.ts\").then(m => m.demoMultiDiseaseIVS())'",
     "build": "tsc",
     "dev": "tsx watch src/main.ts"
   },

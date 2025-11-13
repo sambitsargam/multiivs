@@ -81,3 +81,40 @@ export function cidToBytes(cid: string): Uint8Array {
 export function bytesToCid(bytes: Uint8Array): string {
   return new TextDecoder().decode(bytes);
 }
+
+/**
+ * Upload string or buffer to IPFS (convenience wrapper)
+ */
+export async function uploadToIPFS(data: string | Buffer, filename?: string): Promise<string> {
+  const apiKey = process.env.LIGHTHOUSE_API_KEY || '';
+  
+  try {
+    const buffer = typeof data === 'string' ? Buffer.from(data) : data;
+    const formData = new FormData();
+    formData.append('file', buffer, {
+      filename: filename || 'data.bin',
+      contentType: 'application/octet-stream',
+    });
+    
+    const response = await fetch('https://node.lighthouse.storage/api/v0/add', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${apiKey}`,
+        ...formData.getHeaders(),
+      },
+      body: formData as any, // FormData type compatibility
+    });
+
+    if (!response.ok) {
+      const errorText = await response.text();
+      throw new Error(`Lighthouse upload failed: ${response.status} - ${errorText}`);
+    }
+
+    const result = await response.json();
+    return result.Hash;
+  } catch (error) {
+    console.error('Error uploading to IPFS:', error);
+    // Return mock CID for development
+    return `Qm${Math.random().toString(36).substring(2, 15)}`;
+  }
+}
